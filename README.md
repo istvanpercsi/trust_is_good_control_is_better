@@ -35,7 +35,7 @@ In this section you can find an example for hexagonal architecture, of course it
  |  |  |  |- *Request.java
  |  |  |  |- *Response.java
  |  |  |- *Controller.java
- |  |-kafka-consumer
+ |  |-kafka_consumer
  |  |  |-model
  |  |  |  |- *ConsumerMessage.java
  |  |  |- *Consumer.java
@@ -49,11 +49,11 @@ In this section you can find an example for hexagonal architecture, of course it
  |  |  |  |  |  |- *Entity.java
  |  |  |  |  |- *Repository.java
  |  |  |  |- *DaoImpl.java
- |  |-kafka-producer
+ |  |-kafka_producer
  |  |  |-model
  |  |  |  |- *.ProducerMessage.java
  |  |  |- *.ProducerImpl.java
- |  |-http-client
+ |  |-http_client
  |  |  |-model
  |  |  |  |- *ClientRequest.java
  |  |  |  |- *ClientResponse.java
@@ -74,8 +74,11 @@ In this section you can find an example for hexagonal architecture, of course it
 ```
 #### Package definitions
 
-- `input` - implementations for input port (adapter, interface)
+- `input` - Implementations for input port (adapter, interface)
 - `input.controller` - API definition
 - `input.controller.model` - Request response models for API
-- `input.kafka-consumer`
+- `input.kafka_consumer` - Kafka Consumer implementations
+- `input.kafka_consumer.model` - Message models for Kafka Cosnumer
+- `output` - Implementations for output port (adapter, interface)
+- 
 
