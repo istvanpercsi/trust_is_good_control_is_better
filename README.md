@@ -16,8 +16,8 @@ A good example is if we want to follow [_Clean Architecture principles_](https:/
 
 Hexagonal architecture (other words, ports and adapter architecture) is a software design pattern, where the units are loosely coupled, and they are so independent of each other as they can. Business logic (Service) is in the central place, it is independent of the other units of program. The other units can be called as ports or adapters. The adapters can be split to _input_ and _output_ adapters. 
 
-- input adapters can call and only can call service layer. Input adapters can be for example: controllers, message queue consumers, etc.
-- output adapters can be called from service layer via dependency inversion principle, so we can be sure that the servcie layer is independent of output adapters. It means interfaces are defined in service layer, but the implementation itself is in adapter. Output adapters can be: DB layer, message queue producers, external clients, etc.
+- input interfaces(adapters, ports) can and only can call service layer. Input adapters can be for example: controllers, message queue consumers, etc.
+- output adapters can and only can be called from service layer via dependency inversion principle, so we can be sure that the servcie layer stays independent of output adapters. It means interfaces are defined in service layer, but the implementation itself is in adapter. Output adapters can be: DB layer, message queue producers, external clients, etc.
 
 ### Strongly typed implementation
 
@@ -25,10 +25,10 @@ Strongly typed design pattern is that, if the starndard language types are not u
 
 ### Example for a Hexagonal Architecure
 
-For example, if we want to follow the next sturcure in our java source code:
+In this section you can find an example for hexagonal architecture, of course it is not a mandatory architecture, but in this example you can see which implementations belong to input port, output port, and which one belong to business logic (service):
 
 ```text
-project root
+<project root>
  |-input
  |  |-controller
  |  |  |-model
@@ -37,13 +37,13 @@ project root
  |  |  |- *Controller.java
  |  |-kafka-consumer
  |  |  |-model
- |  |  |  |- *.java
+ |  |  |  |- *ConsumerMessage.java
  |  |  |- *Consumer.java
  |-output
  |  |-database
  |  |  |-dao
  |  |  |  |-model
- |  |  |  |  |- *.java
+ |  |  |  |  |- *DaoData.java
  |  |  |  |-repository
  |  |  |  |  |-entity
  |  |  |  |  |  |- *Entity.java
@@ -51,7 +51,7 @@ project root
  |  |  |  |- *DaoImpl.java
  |  |-kafka-producer
  |  |  |-model
- |  |  |  |- *.java
+ |  |  |  |- *.ProducerMessage.java
  |  |  |- *.ProducerImpl.java
  |  |-http-client
  |  |  |-model
@@ -72,5 +72,10 @@ project root
  |  |  |- *Data.java
  |  |- *ServiceImpl.java
 ```
+#### Package definitions
 
+- `input` - implementations for input port (adapter, interface)
+- `input.controller` - API definition
+- `input.controller.model` - Request response models for API
+- `input.kafka-consumer`
 
