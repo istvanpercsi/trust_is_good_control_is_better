@@ -44,15 +44,33 @@ project root
  |  |  |-dao
  |  |  |  |-model
  |  |  |  |  |- *.java
- |  |  |  |- *Dao.java
- |  |  |-repository
- |  |  |  |-entity
- |  |  |  |  |- *Entity.java
- |  |  |  |- *Repository.java
+ |  |  |  |-repository
+ |  |  |  |  |-entity
+ |  |  |  |  |  |- *Entity.java
+ |  |  |  |  |- *Repository.java
+ |  |  |  |- *DaoImpl.java
  |  |-kafka-producer
  |  |  |-model
  |  |  |  |- *.java
- |  |  |- *.Producer.java
+ |  |  |- *.ProducerImpl.java
+ |  |-http-client
+ |  |  |-model
+ |  |  |  |- *ClientRequest.java
+ |  |  |  |- *ClientResponse.java
+ |  |  |- *HttpClientImpl.java
+ |-service
+ |  |-interface
+ |  |  |-input
+ |  |  |  |- *Service.java
+ |  |  |-output
+ |  |  |  |- *Producer.java
+ |  |  |  |- *Dao.java
+ |  |  |  |- *HttpClient.java
+ |  |-model
+ |  |  |-literal
+ |  |  |  |- *.java
+ |  |  |- *Data.java
+ |  |- *ServiceImpl.java
 ```
 
 
