@@ -69,8 +69,18 @@ In this section you can find an example for hexagonal architecture, of course it
 - `input` - Implementations for input port (adapter, interface)
 - `input.controller` - API definition
 - `input.controller.model` - Request response models for API
-- `input.kafka_consumer` - Kafka Consumer implementations
-- `input.kafka_consumer.model` - Message models for Kafka Cosnumer
+- `input.kafka_consumer` - Implementations of Kafka consumers
+- `input.kafka_consumer.model` - Message models for Kafka costumers
 - `output` - Implementations for output port (adapter, interface)
-- 
+- `output.database` - Implementations of db-connection. Here instead of `database` can be used some unique name, if you have more db connection. 
+- `output.database.dao` - Implementations of DAO (Data Access Object). DAO is the _frontend_ for any database doings
+- `output.database.dao.repository` - Implementations of repositories which will be called from DAO implementations
+- `output.database.dao.repository.entity` - Implementations of database entities.
+- `output.kafka_producers` - Implementations of Kafka producers
+- `output.kafka_producers.model` - Message models for Kafka producers
+- `output.http_client` - Implementations of HTTP clients for external APIs
+- `output.http_client.model` - Implementations of request/response models for calling external APIs.
+- `service` - Implementations of core business logic
+- `service.interface` - Input / Output interfaces
+- `service.`
 
