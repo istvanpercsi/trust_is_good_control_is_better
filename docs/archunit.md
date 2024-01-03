@@ -94,3 +94,27 @@ In this section you can find an example for hexagonal architecture, of course it
 ## Testing
 
 After project structure is defined, an architecture test can be written. In this project we will use Archunit for this purpose
+
+### Adding maven dependency
+
+First maven Archunit maven dependency must be added.
+
+```xml
+<dependency>
+    <groupId>com.tngtech.archunit</groupId>
+    <artifactId>archunit</artifactId>
+    <version>1.1.0</version>
+    <scope>test</scope>
+</dependency>
+```
+
+After adding this dependency, normal JUnit tests without any special annotation can be written. (`StructureTest.java` in project root)If we want to use special Archunit annotations (such as `@AnalyseClasses` or `@ArchTest`), then the maven dependency for JUnit extension must be added.
+
+```xml
+<dependency>
+    <groupId>com.tngtech.archunit</groupId>
+    <artifactId>archunit-junit5</artifactId>
+    <version>1.1.0</version>
+    <scope>test</scope>
+</dependency>
+```
