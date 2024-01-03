@@ -97,7 +97,7 @@ After project structure is defined, an architecture test can be written. In this
 
 ### Adding maven dependency
 
-First maven Archunit maven dependency must be added.
+First maven Archunit maven dependency must be added. After adding this dependency, normal JUnit tests without any special annotation can be written. (`StructureTest.java` in project root)
 
 ```xml
 <dependency>
@@ -108,7 +108,7 @@ First maven Archunit maven dependency must be added.
 </dependency>
 ```
 
-After adding this dependency, normal JUnit tests without any special annotation can be written. (`StructureTest.java` in project root)If we want to use special Archunit annotations (such as `@AnalyseClasses` or `@ArchTest`), then the maven dependency for JUnit extension must be added.
+If you want to use special Archunit annotations (such as `@AnalyseClasses` or `@ArchTest`), then the maven dependency for JUnit extension must be added, then the mentioned (and more) annotation can be used (`StuctureExtendedTest.java` in project root)
 
 ```xml
 <dependency>
@@ -118,3 +118,5 @@ After adding this dependency, normal JUnit tests without any special annotation 
     <scope>test</scope>
 </dependency>
 ```
+
+### Writing a test
