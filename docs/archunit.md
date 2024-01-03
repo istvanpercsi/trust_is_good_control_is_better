@@ -91,5 +91,6 @@ In this section you can find an example for hexagonal architecture, of course it
 - `service.model` - Data structures which are used mainly output and in some cases as input for business logic methods.
 - `service.model.literal` - Strong types for whole project. It is defined in service level, because this level is independent of other levels.
 
+## Testing
 
-
+After project structure is defined, an architecture test can be written. In this project we will use Archunit for this purpose
