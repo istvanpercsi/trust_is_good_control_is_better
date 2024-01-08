@@ -35,5 +35,10 @@ public class StructureTest {
                 .andShould().resideInAPackage("io.github.istvanpercsi.trust_but_check.service.interfaces.input..")
                 .andShould().beInterfaces()
                 .check(javaClasses);
+
+        classes().that().haveSimpleNameEndingWith("Data")
+                .should().resideInAPackage("io.github.istvanpercsi.trust_but_check.service.model")
+                .allowEmptyShould(true)
+                .check(javaClasses);
     }
 }
