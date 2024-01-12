@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Service;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
-import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
 public class StructureTest {
 
@@ -19,18 +18,7 @@ public class StructureTest {
         javaClasses = new ClassFileImporter().importPackages("io.github.istvanpercsi.trust_but_check");
     }
 
-    @Test
-    void testLayeredArchitecture() {
-        layeredArchitecture().consideringOnlyDependenciesInLayers()
-                .layer("Input.Controller").definedBy("io.github.istvanpercsi.trust_but_check.input.controller..")
-                .layer("Input.KafkaConsumer").definedBy("io.github.istvanpercsi.trust_but_check.input.kafka_consumer..")
-                .optionalLayer("Output.Database").definedBy("io.github.istvanpercsi.trust_but_check.output.database..")
-                .optionalLayer("Output.HttpClient").definedBy("io.github.istvanpercsi.trust_but_check.output.http_client..")
-                .layer("BusinessLogic").definedBy("io.github.istvanpercsi.trust_but_check.service")
-                .whereLayer("Input.Controller").mayNotAccessAnyLayer()
-                .whereLayer("Input.KafkaConsumer").mayNotAccessAnyLayer()
-                .check(javaClasses);
-    }
+
 
     @Test
     void testServiceLayerSuffixes() {

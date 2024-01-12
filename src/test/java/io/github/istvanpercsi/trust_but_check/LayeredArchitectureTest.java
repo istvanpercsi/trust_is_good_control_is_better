@@ -2,7 +2,7 @@ package io.github.istvanpercsi.trust_but_check;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
@@ -23,8 +23,8 @@ public class LayeredArchitectureTest {
 
     static JavaClasses javaClasses;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void setUp() {
         javaClasses = new ClassFileImporter().importPackages(BASE_PKG);
     }
 
