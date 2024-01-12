@@ -93,11 +93,11 @@ In this section you can find an example for hexagonal architecture, of course it
 
 ## Testing
 
-After project structure is defined, an architecture test can be written. In this project we will use Archunit for this purpose
+After project structure is defined, an architecture test can be written. In this project we will use[Archunit](https://www.archunit.org)for this purpose
 
 ### Adding maven dependency
 
-First maven Archunit maven dependency must be added. After adding this dependency, normal JUnit5 tests without any special (ArchUnit) annotation can be written. (e.g.: `LayeredArchitectureTest.java` in project root) JUnit5 annotations can be used.
+First maven[Archunit](https://www.archunit.org)maven dependency must be added. After adding this dependency, normal JUnit5 tests without any special (ArchUnit) annotation can be written. (e.g.: `LayeredArchitectureTest.java` in project root) JUnit5 annotations can be used.
 
 ```xml
 <dependency>
@@ -108,7 +108,7 @@ First maven Archunit maven dependency must be added. After adding this dependenc
 </dependency>
 ```
 
-If you want to use special Archunit annotations (such as `@AnalyseClasses` or `@ArchTest`), then the maven dependency for JUnit5 extension must be added, then the mentioned (and more) annotation can be used (e.g.: `LayeredArchitectureJUnitExtTest.java` in project root). At the first look it looks like to be simplier, but unfortunately there are no support for this special testing method (rule definitions as variable). Of course maven can access and run they type of tests. You can decide which one would like to use. 
+If you want to use special[Archunit](https://www.archunit.org)annotations (such as `@AnalyseClasses` or `@ArchTest`), then the maven dependency for JUnit5 extension must be added, then the mentioned (and more) annotation can be used (e.g.: `LayeredArchitectureJUnitExtTest.java` in project root). At the first look it looks like to be simplier, but unfortunately there are no support for this special testing method (rule definitions as variable). Of course maven can access and run they type of tests. You can decide which one would like to use. 
 
 ```xml
 <dependency>
@@ -124,7 +124,7 @@ If you want to use special Archunit annotations (such as `@AnalyseClasses` or `@
 As I mentioned there are two-way to write tests.
 
 - Normal way: we can define rules as normal JUnit test methods which are annotated with normal JUnit `@Test` annotation. To use this method we must read classes from base package into a variable before tests are executed.
-- ArchUnit way: we can define rules as variables, which are annotated with `@ArchTest` annotation. The base package which have to be read, must be defined via `@AnalyseClasses` class level annotation. (Not supported in IntelliJ Idea)
+-[ArchUnit](https://www.archunit.org)way: we can define rules as variables, which are annotated with `@ArchTest` annotation. The base package which have to be read, must be defined via `@AnalyseClasses` class level annotation. (Not supported in IntelliJ Idea)
 
 #### Normal way
 
@@ -143,7 +143,7 @@ public class LayeredArchitectureTest {
     // before running test classes must be imported
     @BeforeAll
     static void setUp() {
-        javaClasses = new ClassFileImporter().importPackages(BASE_PKG);
+        javaClasses = new ClassFileImporter().importPackages("io.github.istvanpercsi.trust_but_check");
     }
 }
 ```
@@ -165,3 +165,27 @@ public class LayeredArchitectureTest {
 
 #### ArchUnit way
 
+On this way, you can control the testing with annotations. Instead of reading classes into variable, you can define the base package via `@AnalyzeClasses` annotation. 
+
+
+Then you can define rules as variables and annotate them with `@ArchTest` annotation. The module `archunit-junit5` will handle this type of testing. So after you defined the rules, you do not have to execute them manually with method `check(JavaClasses)`. Unfortunately this type of testing is not supported in IntelliJ Idea, so it is not possilbe to execute rules one by one per IDE, you have to use maven for running tests. 
+
+```java
+@AnalyzeClasses(packages = "io.github.istvanpercsi.trust_but_check")
+public class LayeredArchitectureJUnit5ExtTest {
+
+    @ArchTest
+    static final ArchRule rule_of_layered_architecture = layeredArchitecture().rule_definitons();
+}
+```
+
+## Conclusion
+
+In this article I made an example about hexagonal-layered architecture definition. Then I showed you, how can you integrate[ArchUnit](https://www.archunit.org)into your project, and how can you test that structure with. With the help of[ArchUnit](https://www.archunit.org)you can be sure that every team member in your team follows the structure which was defined at the beginning of the project. 
+
+## Links
+
+- [ArchUnit](https://www.archunit.org)
+- [ArchUnit Docs](https://www.archunit.org/userguide/html/000_Index.html)
+- [ArchUnit Example Repo](https://github.com/TNG/ArchUnit-Examples)
+- [This GitHub Repo](https://github.com/istvanpercsi/trust_is_good_control_is_better)
