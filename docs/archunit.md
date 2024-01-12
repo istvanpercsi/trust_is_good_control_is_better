@@ -163,3 +163,5 @@ public class LayeredArchitectureTest {
 }
 ```
 
+#### ArchUnit way
+
