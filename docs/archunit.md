@@ -2,7 +2,7 @@
 
 With [Archunit](https://www.archunit.org), architecture of java application can be tested, and some critical code-bug can be avoided. 
 
-A good example is if we want to follow [_Clean Architecture principles_](https://amzn.eu/d/89Oz8Ff) (Hexagonal Architecture), then the architecture of the code can be tested with this Archunit.
+A good example is if we want to follow [_Clean Architecture principles_](https://amzn.eu/d/89Oz8Ff) (Hexagonal Architecture), then the architecture of the code can be tested with this [Archunit](https://www.archunit.org).
 
 ## Project Definition
 
@@ -93,11 +93,11 @@ In this section you can find an example for hexagonal architecture, of course it
 
 ## Testing
 
-After project structure is defined, an architecture test can be written. In this project we will use[Archunit](https://www.archunit.org)for this purpose
+After project structure is defined, an architecture test can be written. In this project we will use [Archunit](https://www.archunit.org) for this purpose
 
 ### Adding maven dependency
 
-First maven[Archunit](https://www.archunit.org)maven dependency must be added. After adding this dependency, normal JUnit5 tests without any special (ArchUnit) annotation can be written. (e.g.: `LayeredArchitectureTest.java` in project root) JUnit5 annotations can be used.
+First maven [Archunit](https://www.archunit.org) dependency must be added. After adding this dependency, normal JUnit5 tests without any special ([Archunit](https://www.archunit.org)) annotation can be written. (e.g.: `LayeredArchitectureTest.java` in project root) JUnit5 annotations can be used.
 
 ```xml
 <dependency>
@@ -108,7 +108,7 @@ First maven[Archunit](https://www.archunit.org)maven dependency must be added. A
 </dependency>
 ```
 
-If you want to use special[Archunit](https://www.archunit.org)annotations (such as `@AnalyseClasses` or `@ArchTest`), then the maven dependency for JUnit5 extension must be added, then the mentioned (and more) annotation can be used (e.g.: `LayeredArchitectureJUnitExtTest.java` in project root). At the first look it looks like to be simplier, but unfortunately there are no support for this special testing method (rule definitions as variable). Of course maven can access and run they type of tests. You can decide which one would like to use. 
+If you want to use special [Archunit](https://www.archunit.org) annotations (such as `@AnalyseClasses` or `@ArchTest`), then the maven dependency for JUnit5 extension must be added, then the mentioned (and more) annotation can be used (e.g.: `LayeredArchitectureJUnitExtTest.java` in project root). At the first look it looks like to be simplier, but unfortunately there are no support for this special testing method (rule definitions as variable). Of course maven can access and run they type of tests. You can decide which one would like to use. 
 
 ```xml
 <dependency>
@@ -124,7 +124,7 @@ If you want to use special[Archunit](https://www.archunit.org)annotations (such 
 As I mentioned there are two-way to write tests.
 
 - Normal way: we can define rules as normal JUnit test methods which are annotated with normal JUnit `@Test` annotation. To use this method we must read classes from base package into a variable before tests are executed.
--[ArchUnit](https://www.archunit.org)way: we can define rules as variables, which are annotated with `@ArchTest` annotation. The base package which have to be read, must be defined via `@AnalyseClasses` class level annotation. (Not supported in IntelliJ Idea)
+- [ArchUnit](https://www.archunit.org) way: we can define rules as variables, which are annotated with `@ArchTest` annotation. The base package which have to be read, must be defined via `@AnalyseClasses` class level annotation. (Not supported in IntelliJ Idea)
 
 #### Normal way
 
@@ -181,7 +181,7 @@ public class LayeredArchitectureJUnit5ExtTest {
 
 ## Conclusion
 
-In this article I made an example about hexagonal-layered architecture definition. Then I showed you, how can you integrate[ArchUnit](https://www.archunit.org)into your project, and how can you test that structure with. With the help of[ArchUnit](https://www.archunit.org)you can be sure that every team member in your team follows the structure which was defined at the beginning of the project. 
+In this article I made an example about hexagonal-layered architecture definition. Then I showed you, how can you integrate [ArchUnit](https://www.archunit.org) into your project, and how can you test that structure with. With the help of [ArchUnit](https://www.archunit.org) you can be sure that every team member in your team follows the structure which was defined at the beginning of the project. 
 
 ## Links
 
