@@ -97,7 +97,7 @@ After project structure is defined, an architecture test can be written. In this
 
 ### Adding maven dependency
 
-First maven Archunit maven dependency must be added. After adding this dependency, normal JUnit tests without any special annotation can be written. (`StructureTest.java` in project root)
+First maven Archunit maven dependency must be added. After adding this dependency, normal JUnit5 tests without any special (ArchUnit) annotation can be written. (e.g.: `LayeredArchitectureTest.java` in project root) JUnit5 annotations can be used.
 
 ```xml
 <dependency>
@@ -108,7 +108,7 @@ First maven Archunit maven dependency must be added. After adding this dependenc
 </dependency>
 ```
 
-If you want to use special Archunit annotations (such as `@AnalyseClasses` or `@ArchTest`), then the maven dependency for JUnit extension must be added, then the mentioned (and more) annotation can be used (`StuctureExtendedTest.java` in project root)
+If you want to use special Archunit annotations (such as `@AnalyseClasses` or `@ArchTest`), then the maven dependency for JUnit5 extension must be added, then the mentioned (and more) annotation can be used (e.g.: `LayeredArchitectureJUnitExtTest.java` in project root). At the first look it looks like to be simplier, but unfortunately there are no support for this special testing method (rule definitions as variable). Of course maven can access and run they type of tests. You can decide which one would like to use. 
 
 ```xml
 <dependency>
@@ -120,3 +120,46 @@ If you want to use special Archunit annotations (such as `@AnalyseClasses` or `@
 ```
 
 ### Writing a test
+
+As I mentioned there are two-way to write tests.
+
+- Normal way: we can define rules as normal JUnit test methods which are annotated with normal JUnit `@Test` annotation. To use this method we must read classes from base package into a variable before tests are executed.
+- ArchUnit way: we can define rules as variables, which are annotated with `@ArchTest` annotation. The base package which have to be read, must be defined via `@AnalyseClasses` class level annotation. (Not supported in IntelliJ Idea)
+
+#### Normal way
+
+Test must be defined as a normal JUnitTest, and before testing classes must be read into a variable.
+
+```java
+package io.github.istvanpercsi.trust_but_check;
+
+//...
+
+public class LayeredArchitectureTest {
+   
+    //variable for java classes
+    static JavaClasses javaClasses;
+
+    // before running test classes must be imported
+    @BeforeAll
+    static void setUp() {
+        javaClasses = new ClassFileImporter().importPackages(BASE_PKG);
+    }
+}
+```
+
+Then rules can be defined as normal JUnit5 Test. In test the first thing is, you have to select the type of testing, e.g.: testing of layered architecture, testing of class definition rules, etc. After that you can define the rules, and then end you must use `check(JavaClasses)` method to execute rules on classes which was read before test.
+
+```java
+public class LayeredArchitectureTest {
+    //..
+    @Test
+    void testLayeredArchitecture() {
+        // definition of type of testing hier it is layered architecture test
+        layeredArchitecture()
+                //...
+                .check(javaClasses);
+    }
+}
+```
+
